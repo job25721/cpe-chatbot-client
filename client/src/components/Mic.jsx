@@ -4,8 +4,8 @@ import $ from "jquery";
 import "../css/record-button.css";
 import Axios from "axios";
 import api from "../api";
-import { fontawesome } from "@fortawesome/fontawesome-free";
-export default class test extends React.Component {
+
+export default class Mic extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -66,7 +66,7 @@ export default class test extends React.Component {
   render() {
     return (
       <React-DocumentFragment>
-        <div>
+        <div className="p-0">
           <ReactMic
             record={this.state.record}
             className="sound-wave collapse"
@@ -75,10 +75,10 @@ export default class test extends React.Component {
             strokeColor="#ebf0f5"
             backgroundColor="#34312e"
           />
+        <span id="recButton" className="rec-button">
+          <i className="fas fa-microphone fa-3x"></i>
+        </span>
         </div>
-        <button id="recButton" className="rec-button text-center align-middle">
-          <i className="fas fa-microphone fa-lg"></i>
-        </button>
       </React-DocumentFragment>
     );
   }
