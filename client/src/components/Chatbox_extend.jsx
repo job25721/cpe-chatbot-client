@@ -13,10 +13,9 @@ export default class Chatbox extends React.Component {
       responseMsg: "",
       dateNow: "",
       user_img: "https://image.flaticon.com/icons/svg/145/145867.svg",
-      user_name: "",
+      user_name: "Guest",
       bot_img:
-        //"https://image.flaticon.com/icons/svg/327/327779.svg",
-        "https://scontent-kut2-1.xx.fbcdn.net/v/t1.15752-9/83137578_813886212358855_3094065723887058944_n.png?_nc_cat=107&_nc_sid=b96e70&_nc_oc=AQm8jSoJZYT-rXWgyu5MueM5vmECf99iPVezZMGXLQd0KPHi8WnH5uEUAkJRDKkjVbQ&_nc_ht=scontent-kut2-1.xx&oh=f33a15477764242322634101b08802e6&oe=5EED06B0",
+        "https://image.flaticon.com/icons/svg/327/327779.svg",
       bot_name: "CPE-bot"
     };
 
@@ -30,7 +29,7 @@ export default class Chatbox extends React.Component {
 
   async componentDidMount() {
     // await this.selectAvatar();
-    await this.setNickname();
+    // await this.setNickname();
   }
 
   async selectAvatar() {
@@ -154,7 +153,7 @@ export default class Chatbox extends React.Component {
   async botResponse() {
     // const BOT_IMG = "https://image.flaticon.com/icons/svg/327/327779.svg";
     if (this.state.responseMsg === "whoami")
-      await this.setState({ responseMsg: `คุณชื่อ ${this.state.user_name}`});
+      await this.setState({ responseMsg: `คุณชื่อ ${this.state.user_name}` });
     if(this.state.responseMsg === "")
       await this.setState({responseMsg : "อะไร ?"});
     await this.appendMessage(
@@ -170,11 +169,11 @@ export default class Chatbox extends React.Component {
     return (
       <React-DocumentFragment>
         <hr />
-        <div className="display-name collapse">
+        <div className="display-name">
           <span className="img-sec"></span>
           <h4 className="btn btn-outline-dark">Name : {this.state.user_name}</h4>
         </div>
-        <div className="m-box collapse">
+        <div className="m-box">
           <section className="msger">
             <header className="msger-header">
               <div className="msger-header-title">
