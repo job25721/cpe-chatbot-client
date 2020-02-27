@@ -7,6 +7,7 @@ const processMessage = require('./process-message');
 
 const app = express();
 
+
 // Init Middleware
 app.use(express.json({ extended: false }));
 app.use(cors({ origin: true }));
@@ -16,13 +17,17 @@ app.get('/', (req, res) => {
     res.send('API RUNNING')
 });
 
+app.post("/test", (req, res)=>{
+    console.log(req.body);
+});
+
 app.post('/api/dialogflowGateway', async (req, res) => {
     try {
 
         const message = req.body.message;
         const sessionId = req.body.sessionId;
 
-        const responseChat = await processMessage(message, sessionId);
+        const responseChat = await processMessage(message,sessionId);
         console.log(JSON.stringify(responseChat));
         res.json(responseChat);
 
