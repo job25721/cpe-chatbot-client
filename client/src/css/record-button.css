@@ -18,8 +18,8 @@
 .mic-pic{
 	position: relative;
 	display: inline;
-	left : -1px;
-	top: 1px;
+	/* left : 0px; */
+	top: 3px;
 	cursor: pointer;
 }
 .notRec{
