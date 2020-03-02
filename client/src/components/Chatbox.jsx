@@ -1,10 +1,15 @@
 import React from "react";
+
 import api from "../api";
 
 import "../css/chat.css";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import $ from "jquery";
-import Mic from "./Mic";
+
+import { TextBoxInput } from './TextBoxInput';
+
+import Speech from 'react-speech';
+
 
 export default class Chatbox extends React.Component {
   constructor(props) {
@@ -34,7 +39,7 @@ export default class Chatbox extends React.Component {
 
   async selectAvatar() {
     const lift =
-        "https://scontent.fbkk5-4.fna.fbcdn.net/v/t1.15752-9/83353732_788043008364391_5150885528551292928_n.jpg?_nc_cat=110&_nc_ohc=wyve7bTZeYMAX97rKlH&_nc_ht=scontent.fbkk5-4.fna&oh=6659536bda0c371bb7dd6e31779ecf13&oe=5EC17084",
+      "https://scontent.fbkk5-4.fna.fbcdn.net/v/t1.15752-9/83353732_788043008364391_5150885528551292928_n.jpg?_nc_cat=110&_nc_ohc=wyve7bTZeYMAX97rKlH&_nc_ht=scontent.fbkk5-4.fna&oh=6659536bda0c371bb7dd6e31779ecf13&oe=5EC17084",
       aof =
         "https://scontent.fbkk5-8.fna.fbcdn.net/v/t1.15752-9/81885546_607962379775003_6678906803658424320_n.jpg?_nc_cat=106&_nc_ohc=TWH7rA94b0IAX8Fzw7q&_nc_ht=scontent.fbkk5-8.fna&oh=722f3944718a4338e4c076f92cfb5662&oe=5EDB42CA",
       ice =
@@ -129,7 +134,7 @@ export default class Chatbox extends React.Component {
   }
 
   async sendMsg(msg) {
-    if (this.state.msg !== "") {
+    if (msg !== "") {
       this.appendMessage(
         this.state.user_name,
         this.state.user_img,
@@ -137,33 +142,39 @@ export default class Chatbox extends React.Component {
         msg
       );
       document.querySelector(".msger-input").value = "";
-      this.setState({ msg: "" });
+      // this.setState({ msg: "" });
 
       //send msg to bot
       const body = JSON.stringify({
         message: msg,
-        sessionId: "User1"
+        sessionId: this.state.user_name,
       });
       const callback = await api.post("api/dialogflowGateway", body);
-      await this.setState({ responseMsg: callback.data.fulfillmentText });
+      this.setState({ responseMsg: callback.data.fulfillmentText });
 
-      await this.botResponse();
+      this.botResponse();
     }
   }
 
   async botResponse() {
     // const BOT_IMG = "https://image.flaticon.com/icons/svg/327/327779.svg";
     if (this.state.responseMsg === "whoami")
-      await this.setState({ responseMsg: `คุณชื่อ ${this.state.user_name}` });
+      this.setState({ responseMsg: `คุณชื่อ ${this.state.user_name}` });
     if (this.state.responseMsg === "")
-      await this.setState({ responseMsg: "อะไร ?" });
-    await this.appendMessage(
+      this.setState({ responseMsg: "อะไร ?" });
+
+    this.appendMessage(
       this.state.bot_name,
       this.state.bot_img,
       "left",
       this.state.responseMsg
     );
-    await this.setState({ responseMsg: "" });
+
+    // Audio Output..
+
+    window.responsiveVoice.speak(this.state.responseMsg, "Thai Female");
+
+    // this.setState({ responseMsg: "" });
   }
 
   render() {
@@ -213,26 +224,11 @@ export default class Chatbox extends React.Component {
               <div className="msg right-msg"></div>
             </div>
 
-            <form
-              className="msger-inputarea"
-              onSubmit={async e => {
-                e.preventDefault();
-                await this.sendMsg(this.state.msg);
-              }}
-            >
-              <Mic />
-              <input
-                type="text"
-                className="msger-input"
-                placeholder="Enter your message..."
-                value={this.state.msg}
-                onChange={e => this.setState({ msg: e.target.value })}
-              />
-              <button type="submit" className="msger-send-btn">
-                Send
-              </button>
-            </form>
+            <TextBoxInput sendMsg={this.sendMsg} />
+
+
           </section>
+
         </div>
       </React-DocumentFragment>
     );
