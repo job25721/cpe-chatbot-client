@@ -1,12 +1,14 @@
 import React from "react";
 
-import Navbar from "../components/Navbar";
 import Chatbox from "../components/Chatbox";
-
+import {Helmet} from "react-helmet";
 export default class Chat extends React.Component {
   render() {
     return (
       <React-DocumentFragment>
+        <Helmet>
+          <title>CPE-Chatbot</title>
+        </Helmet>
         <span className="t-head d-flex justify-content-center text-cb">
           CPE Chat Bot
         </span>

@@ -1,11 +1,14 @@
 import React from "react";
 import "../css/home.css";
-
+import {Helmet} from "react-helmet";
 
 export default class App extends React.Component {
   render() {
     return (
       <React-fragment>
+        <Helmet>
+          <title>ทรงพระเจริญ</title>
+        </Helmet>
         <div className="index">
           <img src="/img/index.jpg" alt="Safty First" className="img-index" />
           <div className="center">
