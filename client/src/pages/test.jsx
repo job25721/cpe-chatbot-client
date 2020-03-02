@@ -4,69 +4,18 @@ import $ from "jquery";
 import "../css/record-button.css";
 import Axios from "axios";
 import api from "../api";
-import { fontawesome } from "@fortawesome/fontawesome-free";
+import Mic from "../components/Mic"
+import MyTest from '../components/MyTest'
+
 export default class test extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      record: false
-    };
-    this.startRecording = this.startRecording.bind(this);
-    this.stopRecording = this.stopRecording.bind(this);
-    this.recordToggle = this.recordToggle.bind(this);
-  }
-
-  startRecording() {
-    this.setState({ record: true });
-    console.log(this.state.record);
-  }
-
-  stopRecording() {
-    this.setState({ record: false });
-    console.log(this.state.record);
-  }
-
-  onData(recordedBlob) {
-    console.log("chunk of real-time data is: ", recordedBlob);
-  }
-
-  onStop(recordedBlob) {
-    console.log("recordedBlob is: ", recordedBlob);
-    const url = "http://localhost:5000/api/audio-message";
-    const formData = new FormData();
-    formData.append("audio", recordedBlob.blob);
-    const config = {
-      headers: {
-        "content-type": "multipart/form-data"
-      }
-    };
-    Axios.post(url, formData, config);
-  }
-
-  recordToggle() {
-    $("#recButton").addClass("notRec");
-    document.getElementById("recButton").addEventListener("click", () => {
-      if ($("#recButton").hasClass("notRec")) {
-        console.log("rec");
-        this.setState({ record: true });
-        $("#recButton").removeClass("notRec");
-        $("#recButton").addClass("Rec");
-      } else {
-        console.log("stop");
-        this.setState({ record: false });
-        $("#recButton").removeClass("Rec");
-        $("#recButton").addClass("notRec");
-      }
-    });
-  }
-
-  componentDidMount() {
-    this.recordToggle();
-  }
+  
   render() {
     return (
       <React-DocumentFragment>
-        <div>
+        
+        <MyTest/>
+        
+        {/* <div>
           <ReactMic
             record={this.state.record}
             className="sound-wave collapse"
@@ -78,7 +27,7 @@ export default class test extends React.Component {
         </div>
         <button id="recButton" className="rec-button text-center align-middle">
           <i className="fas fa-microphone fa-lg"></i>
-        </button>
+        </button> */}
       </React-DocumentFragment>
     );
   }

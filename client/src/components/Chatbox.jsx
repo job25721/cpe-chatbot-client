@@ -180,16 +180,16 @@ export default class Chatbox extends React.Component {
   render() {
     return (
       <React-DocumentFragment>
-        <hr />
-        <div className="display-name">
+        {/* <hr /> */}
+        {/* <div className="display-name">
           <span className="img-sec"></span>
           <h4 className="btn btn-outline-dark">
             Name : {this.state.user_name}
           </h4>
-        </div>
-        <div className="m-box">
+        </div> */}
+        <div className="m-box anantason">
           <section className="msger">
-            <header className="msger-header">
+            {/* <header className="msger-header">
               <div className="msger-header-title">
                 <i className="fas fa-comment-alt"></i> CPE-Chatbot
               </div>
@@ -198,7 +198,7 @@ export default class Chatbox extends React.Component {
                   <i className="fas fa-cog"></i>
                 </span>
               </div>
-            </header>
+            </header> */}
 
             <div className="msger-chat">
               <div className="msg left-msg">

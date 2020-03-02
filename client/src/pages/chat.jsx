@@ -7,11 +7,11 @@ export default class Chat extends React.Component {
   render() {
     return (
       <React-DocumentFragment>
-        <div className="">
-            <Navbar />
-            <div className="d-flex justify-content-center mr-auto">
-                <Chatbox />
-            </div>
+        <span className="font-weight-bold mt-5 bebas h1 d-flex justify-content-center text-cb">
+          CPE Chat Bot
+        </span>
+        <div className="d-flex justify-content-center mr-auto">
+          <Chatbox />
         </div>
       </React-DocumentFragment>
     );
