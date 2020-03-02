@@ -19,6 +19,7 @@ const upload = multer({ storage: storage })
 
 const app = express();
 
+
 // Init Middleware
 app.use(express.json({ extended: false }));
 app.use(cors({ origin: true }));
@@ -38,7 +39,7 @@ app.post('/api/dialogflowGateway', async (req, res) => {
         const message = req.body.message;
         const sessionId = req.body.sessionId;
 
-        const responseChat = await processMessage(message, sessionId);
+        const responseChat = await processMessage(message,sessionId);
         console.log(JSON.stringify(responseChat));
         res.json(responseChat);
 
