@@ -3,7 +3,6 @@ import { ReactMic } from "@cleandersonlobo/react-mic";
 import $ from "jquery";
 import "../css/record-button.css";
 import Axios from "axios";
-import api from "../api";
 
 export default class Mic extends React.Component {
   constructor(props) {
@@ -66,17 +65,19 @@ export default class Mic extends React.Component {
   render() {
     return (
       <React-DocumentFragment>
-        <ReactMic
-          record={this.state.record}
-          className="sound-wave collapse"
-          onStop={this.onStop}
-          onData={this.onData}
-          strokeColor="#ebf0f5"
-          backgroundColor="#34312e"
-        />
-        <span class="rec-button align-middle" id="recButton">
-          <i class="fas fa-microphone fa-lg"></i>
-        </span>
+        <div className="p-0">
+          <ReactMic
+            record={this.state.record}
+            className="sound-wave collapse"
+            onStop={this.onStop}
+            onData={this.onData}
+            strokeColor="#ebf0f5"
+            backgroundColor="#34312e"
+          />
+        <div id="recButton" className="rec-button mr-1">
+          <i className="fas fa-microphone fa-3x mic-pic"></i>
+        </div>
+        </div>
       </React-DocumentFragment>
     );
   }

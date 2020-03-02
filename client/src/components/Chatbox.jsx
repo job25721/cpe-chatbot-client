@@ -4,7 +4,7 @@ import api from "../api";
 import "../css/chat.css";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import $ from "jquery";
-
+import Mic from "./Mic";
 
 export default class Chatbox extends React.Component {
   constructor(props) {
@@ -14,10 +14,8 @@ export default class Chatbox extends React.Component {
       responseMsg: "",
       dateNow: "",
       user_img: "https://image.flaticon.com/icons/svg/145/145867.svg",
-      user_name: "",
-      bot_img:
-        //"https://image.flaticon.com/icons/svg/327/327779.svg",
-        "https://scontent-kut2-1.xx.fbcdn.net/v/t1.15752-9/83137578_813886212358855_3094065723887058944_n.png?_nc_cat=107&_nc_sid=b96e70&_nc_oc=AQm8jSoJZYT-rXWgyu5MueM5vmECf99iPVezZMGXLQd0KPHi8WnH5uEUAkJRDKkjVbQ&_nc_ht=scontent-kut2-1.xx&oh=f33a15477764242322634101b08802e6&oe=5EED06B0",
+      user_name: "Guest",
+      bot_img: "https://image.flaticon.com/icons/svg/327/327779.svg",
       bot_name: "CPE-bot"
     };
 
@@ -31,7 +29,7 @@ export default class Chatbox extends React.Component {
 
   async componentDidMount() {
     // await this.selectAvatar();
-    await this.setNickname();
+    // await this.setNickname();
   }
 
   async selectAvatar() {
@@ -45,7 +43,8 @@ export default class Chatbox extends React.Component {
         "https://scontent.fbkk10-1.fna.fbcdn.net/v/t1.15752-9/84768336_188620725828585_105432702563385344_n.jpg?_nc_cat=107&_nc_ohc=QjVUqVjCONsAX-NaJBH&_nc_ht=scontent.fbkk10-1.fna&oh=6041d57eefe1a45d7b73e454e64b9f3e&oe=5EC8ADBF",
       boss =
         "https://scontent.fbkk5-4.fna.fbcdn.net/v/t1.15752-9/72339907_967070410302168_7327105479878901760_n.jpg?_nc_cat=103&_nc_ohc=xcdRQ8SVS0kAX9m8bD-&_nc_ht=scontent.fbkk5-4.fna&oh=da9cc4c1ee9f0f771cc8053d14cab1d6&oe=5ED5F108",
-      por = "https://scontent.fbkk10-1.fna.fbcdn.net/v/t1.15752-9/84991232_617615495670365_6489035598106460160_n.jpg?_nc_cat=110&_nc_ohc=CtW3UYnft6gAX-F5oAi&_nc_ht=scontent.fbkk10-1.fna&oh=1cf258f6e9c8c1ca06dd8eab5fd5375a&oe=5ECD58C4"
+      por =
+        "https://scontent.fbkk10-1.fna.fbcdn.net/v/t1.15752-9/84991232_617615495670365_6489035598106460160_n.jpg?_nc_cat=110&_nc_ohc=CtW3UYnft6gAX-F5oAi&_nc_ht=scontent.fbkk10-1.fna&oh=1cf258f6e9c8c1ca06dd8eab5fd5375a&oe=5ECD58C4";
 
     const inputOptions = new Promise(resolve => {
       setTimeout(() => {
@@ -81,7 +80,7 @@ export default class Chatbox extends React.Component {
     else if (img === "boss") imgPath = boss;
     else if (img === "por") imgPath = por;
     await this.setState({ user_img: imgPath });
-    $(".img-sec").html(`<img src="${imgPath}" class="msg-img" />`)
+    $(".img-sec").html(`<img src="${imgPath}" class="msg-img" />`);
   }
   async setNickname() {
     const { value: name } = await Swal.fire({
@@ -155,9 +154,9 @@ export default class Chatbox extends React.Component {
   async botResponse() {
     // const BOT_IMG = "https://image.flaticon.com/icons/svg/327/327779.svg";
     if (this.state.responseMsg === "whoami")
-      await this.setState({ responseMsg: `คุณชื่อ ${this.state.user_name}`});
-    if(this.state.responseMsg === "")
-      await this.setState({responseMsg : "อะไร ?"});
+      await this.setState({ responseMsg: `คุณชื่อ ${this.state.user_name}` });
+    if (this.state.responseMsg === "")
+      await this.setState({ responseMsg: "อะไร ?" });
     await this.appendMessage(
       this.state.bot_name,
       this.state.bot_img,
@@ -170,14 +169,16 @@ export default class Chatbox extends React.Component {
   render() {
     return (
       <React-DocumentFragment>
-        <hr />
-        <div className="display-name collapse">
+        {/* <hr /> */}
+        {/* <div className="display-name">
           <span className="img-sec"></span>
-          {/* <h4 className="btn btn-outline-dark">Name : {this.state.user_name}</h4> */}
-        </div>
-        <div className="m-box collapse">
+          <h4 className="btn btn-outline-dark">
+            Name : {this.state.user_name}
+          </h4>
+        </div> */}
+        <div className="m-box anantason">
           <section className="msger">
-            <header className="msger-header">
+            {/* <header className="msger-header">
               <div className="msger-header-title">
                 <i className="fas fa-comment-alt"></i> CPE-Chatbot
               </div>
@@ -186,15 +187,14 @@ export default class Chatbox extends React.Component {
                   <i className="fas fa-cog"></i>
                 </span>
               </div>
-            </header>
+            </header> */}
 
             <div className="msger-chat">
               <div className="msg left-msg">
                 <div
                   className="msg-img"
                   style={{
-                    backgroundImage:
-                      `url(${this.state.bot_img})`
+                    backgroundImage: `url(${this.state.bot_img})`
                   }}
                 ></div>
 
@@ -220,6 +220,7 @@ export default class Chatbox extends React.Component {
                 await this.sendMsg(this.state.msg);
               }}
             >
+              <Mic />
               <input
                 type="text"
                 className="msger-input"
