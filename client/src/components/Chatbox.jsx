@@ -84,7 +84,7 @@ export default class Chatbox extends React.Component {
     else if (img === "pleum") imgPath = pleum;
     else if (img === "boss") imgPath = boss;
     else if (img === "por") imgPath = por;
-    await this.setState({ user_img: imgPath });
+    this.setState({ user_img: imgPath });
     $(".img-sec").html(`<img src="${imgPath}" class="msg-img" />`);
   }
   async setNickname() {
@@ -103,8 +103,8 @@ export default class Chatbox extends React.Component {
       }
     });
     this.setState({ user_name: name });
-    await $(".display-name").show("fast");
-    await $(".m-box").show("fade");
+    $(".display-name").show("fast");
+    $(".m-box").show("fade");
   }
 
   appendMessage(name, img, side, text) {
@@ -172,7 +172,9 @@ export default class Chatbox extends React.Component {
 
     // Audio Output..
 
-    window.responsiveVoice.speak(this.state.responseMsg, "Thai Female");
+    const responseText = $(`<p>${this.state.responseMsg}</p>`).text();
+    console.log(responseText);
+    window.responsiveVoice.speak(responseText, "Thai Female");
 
     // this.setState({ responseMsg: "" });
   }
