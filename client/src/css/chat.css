@@ -207,3 +207,70 @@
 body {
   overflow: hidden;
 }
+
+.t-head{
+  font-family: bebas;
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-top: 48px;
+}
+
+@media (max-height:900px){
+  .t-head{
+    margin-top: 40px;
+  }
+  .msger-chat{
+    height: 630px;
+  }
+}
+
+@media (max-height:860px){
+  .t-head{
+    margin-top: 30px;
+  }
+  .msger-chat{
+    height: 600px;
+  }
+}
+
+@media (max-height:820px){
+  .t-head{
+    margin-top: 25px;
+  }
+  .msger-chat{
+    height: 500px;
+    font-size: 0.8rem;
+    
+  }
+  .msger{
+    width: 700px;
+  }
+}
+
+@media (max-height:720px){
+  .t-head{
+    margin-top: 25px;
+  }
+  .msger-chat{
+    height: 450px;
+    font-size: 0.7rem;
+    
+  }
+  .msger{
+    width: 670px;
+  }
+}
+
+@media (max-height:670px){
+  .t-head{
+    margin-top: 25px;
+  }
+  .msger-chat{
+    height: 400px;
+    font-size: 0.6rem;
+    
+  }
+  .msger{
+    width: 640px;
+  }
+}
