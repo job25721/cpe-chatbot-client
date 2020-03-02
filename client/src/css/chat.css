@@ -242,9 +242,6 @@ body {
     font-size: 0.8rem;
     
   }
-  .msger{
-    width: 700px;
-  }
 }
 
 @media (max-height:720px){
@@ -256,21 +253,44 @@ body {
     font-size: 0.7rem;
     
   }
-  .msger{
-    width: 670px;
-  }
 }
 
 @media (max-height:670px){
   .t-head{
-    margin-top: 25px;
+    margin-top: 20px;
   }
   .msger-chat{
     height: 400px;
     font-size: 0.6rem;
-    
   }
   .msger{
-    width: 640px;
+    font-size: 0.6rem;
   }
 }
+
+@media (max-height:600px){
+  .t-head{
+    margin-top: 15px;
+  }
+
+  .msger-chat{
+    font-size: 0.6rem;
+  }
+  .msger{
+    margin-top: 15px;
+    font-size: 0.6rem;
+  }
+}
+
+@media (max-width:750px){
+  .msger{
+    width: 100%;
+  }
+}
+
+@media (max-width:400px){
+  .msger{
+    font-size: 0.5rem;
+  }
+}
+
