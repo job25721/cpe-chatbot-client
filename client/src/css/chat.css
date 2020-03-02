@@ -291,6 +291,8 @@ body {
 @media (max-width:400px){
   .msger{
     font-size: 0.5rem;
+    margin-left: 0;
   }
+  
 }
 
