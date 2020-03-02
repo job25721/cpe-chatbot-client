@@ -5,6 +5,7 @@ import "../css/chat.css";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import $ from "jquery";
 
+
 export default class Chatbox extends React.Component {
   constructor(props) {
     super();
@@ -172,7 +173,7 @@ export default class Chatbox extends React.Component {
         <hr />
         <div className="display-name collapse">
           <span className="img-sec"></span>
-          <h4 className="btn btn-outline-dark">Name : {this.state.user_name}</h4>
+          {/* <h4 className="btn btn-outline-dark">Name : {this.state.user_name}</h4> */}
         </div>
         <div className="m-box collapse">
           <section className="msger">

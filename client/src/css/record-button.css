@@ -1,13 +1,21 @@
 .rec-button {
-	width: 55px;
-	height: 55px;
-	/* font-size: 0; */
-	background-color: red;
-	border: 0;
-	border-radius: 35px;
-	margin: 18px;
+	width: 40px;
+	line-height:40px;
+	background-color: rgb(255, 89, 89);
+	color: rgb(255, 255, 255);
+	border-radius: 50%;
+	-moz-border-radius:50%;
+	border: 0px;
+	display: block;
 	outline: none;
+	text-align: center;
 }
+
+.t-center{
+	margin: auto;
+}
+
+
 
 .notRec{
 	/* background-color: black; */
