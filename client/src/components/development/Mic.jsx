@@ -1,80 +1,92 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, Fragment } from "react";
 
 import "../../css/record-button.css";
 import PropTypes from "prop-types";
-import SpeechRecognition from "react-speech-recognition";
+// import SpeechRecognition from "react-speech-recognition";
 
 // redux things
 import { connect } from 'react-redux';
 import { changeMessageBox, sendInputMessageToServer } from '../../redux/actions/message';
 
+// ------------------------
 
+const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+const recognition = SpeechRecognition ? new SpeechRecognition() : null;
+
+if (recognition != null){
+  recognition.continous = true;
+  recognition.interimResults = true;
+  recognition.lang = 'th';
+}
+
+
+// -------------------------
 const Mic = (props) => {
 
-  props.recognition.lang = 'th';
-  const [isRecording, setIsRecording] = useState(false);
-  const changeMessage = props.changeMessageBox;
+  const [listening, setListening] = useState(false);
 
-  useEffect(()=>{
-    changeMessage(props.transcript);
-  }, [changeMessage, props.transcript]);
-
-  const toggleRecording = async () => {
-
-    if (!props.browserSupportsSpeechRecognition){
-      console.error("Browser not support...");
+  const toggleListen = () => {
+    if (!recognition){
+      console.error("Browser doesn't support speech recognition please use chrome");
       return;
     }
+    setListening(!listening);
+    handleListen();
+  }
 
-    if(isRecording){
-      // stop recording...
-      props.stopListening();
-      const transcript = props.transcript;
-      console.log(transcript);
-      await sendInputMessageToServer(transcript, "sessionId");
-      setIsRecording(false);
-      console.log("stopRecording...");
+  const handleListen = () => {
+
+    if (!listening) {
+      recognition.start()
+      recognition.onend = () => {
+        props.changeMessageBox(finalTranscript);
+        recognition.start();
+      }
     } else {
-      // start recording...
-      console.log("Recording...");
-      props.startListening();
-      setIsRecording(true);
+      recognition.stop()
+      recognition.onend = () => {
+        props.sendInputMessageToServer(props.messageBoxInput, "SessionId");
+      }
     }
+
+    // recording ...
+    let finalTranscript = '';
+    recognition.onresult = event => {
+      let interimTranscript = finalTranscript;
+      for (let i = event.resultIndex; i < event.results.length; i++) {
+        const transcript = event.results[i][0].transcript;
+        if (event.results[i].isFinal) finalTranscript += transcript + ' ';
+        else interimTranscript += transcript;
+      }
+      props.changeMessageBox(interimTranscript);
+    }
+
+    recognition.onerror = event => {
+      console.log("Error occurred in recognition: " + event.error)
+    }
+
   }
 
   return (
-    <React-DocumentFragment>
-        <div className="p-0">
-        <div id="recButton" className={`rec-button mr-1 ${isRecording ? "Rec" : "notRec"}`} onClick={toggleRecording}>
+    <Fragment>
+      <div className="p-0">
+        <div id="recButton" className={`rec-button mr-1 ${listening ? "Rec" : "notRec"}`} onClick={toggleListen}>
           <i className="fas fa-microphone fa-3x mic-pic"></i>
         </div>
-        </div>
-      </React-DocumentFragment>
+      </div>
+    </Fragment>
   )
 }
 
-
-// For Speech recognision
-const propTypes = {
-  // Props injected by SpeechRecognition
-  transcript: PropTypes.string,
-  browserSupportsSpeechRecognition: PropTypes.bool,
-  startListening: PropTypes.func,
-  stopListening: PropTypes.func,
-  recognition: PropTypes.object,
-
-  // redux prop,
+Mic.propTypes = {
+  messageBoxInput: PropTypes.string.isRequired,
   changeMessageBox: PropTypes.func.isRequired,
   sendInputMessageToServer: PropTypes.func.isRequired,
-};
-
-Mic.propTypes = propTypes;
-
-// Speech Regcognision option;
-const options = {
-  autoStart: false,
-  continuous: false,
 }
 
 
-export default connect(null, { changeMessageBox, sendInputMessageToServer })(SpeechRecognition(options)(Mic));
+const mapStateToProps = state => ({
+  messageBoxInput:  state.message.messageBoxInput,
+});
+
+export default connect(mapStateToProps, { changeMessageBox, sendInputMessageToServer })(Mic);

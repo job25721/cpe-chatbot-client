@@ -18,6 +18,10 @@ export const changeMessageBox = (msg) => dispatch => {
 
 export const sendInputMessageToServer = (msg, sessionId) => async dispatch => {
 
+    if (msg === "") {
+        return;
+    }
+
     dispatch({
         type: SEND_MESSAGE_TO_SERVER,
         payload: {
