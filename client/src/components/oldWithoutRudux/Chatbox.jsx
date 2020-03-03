@@ -1,14 +1,12 @@
 import React from "react";
 
-import api from "../api";
+import api from "../../api";
 
 import "../css/chat.css";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import $ from "jquery";
 
 import { TextBoxInput } from './TextBoxInput';
-
-import Speech from 'react-speech';
 
 
 export default class Chatbox extends React.Component {

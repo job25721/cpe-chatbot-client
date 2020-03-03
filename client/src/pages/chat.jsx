@@ -1,6 +1,6 @@
 import React from "react";
 
-import Chatbox from "../components/Chatbox";
+import Chatbox from "../components/development/Chatbot";
 import {Helmet} from "react-helmet";
 export default class Chat extends React.Component {
   render() {

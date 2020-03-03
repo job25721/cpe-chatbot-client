@@ -2,19 +2,21 @@ import React from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 import Pages from './pages'
-import { GlobalProvider } from './context/GlobalState';
 //import Components from './Components'
 
+// Redux
+import { Provider } from 'react-redux';
+import store from './redux/store';
+
 export default () => (
-    <GlobalProvider>
+    <Provider store={store}>
         <BrowserRouter>
             <Switch>
                 <Route exact path='/' component={Pages.index} />
                 <Route exact path='/app' component={Pages.Chat} />
-                <Route exact path='/test' component={Pages.test} />
             </Switch>
         </BrowserRouter>
-    </GlobalProvider>
+    </Provider>
 )
 
 

@@ -1,5 +1,5 @@
 import React from "react";
-import api from "../api";
+import api from "../../api";
 
 import "../css/chat.css";
 import Swal from "sweetalert2/dist/sweetalert2.js";
