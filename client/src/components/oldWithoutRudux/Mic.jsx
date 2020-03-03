@@ -1,10 +1,7 @@
-import React, { useContext, useEffect, useState } from "react";
-import $ from "jquery";
+import React, { useState } from "react";
 import "../css/record-button.css";
 import PropTypes from "prop-types";
 import SpeechRecognition from "react-speech-recognition";
-
-import { GlobalContext } from '../context/GlobalState';
 
 // For Speech recognision
 const propTypes = {
@@ -20,13 +17,11 @@ const propTypes = {
 const Mic = (props) => {
 
   // props.recognition.lang = 'th';
-
-  const { changeMessageBox } = useContext(GlobalContext);
   const [isRecording, setIsRecording] = useState(false);
 
-  useEffect(()=>{
-    changeMessageBox(props.transcript)
-  }, [props.transcript]);
+  // useEffect(()=>{
+  //   changeMessageBox(props.transcript)
+  // }, [props.transcript]);
 
   const toggleRecording = () => {
     if(isRecording){
