@@ -215,85 +215,25 @@ body {
   margin-top: 48px;
 }
 
-@media (max-height:900px){
-  .t-head{
-    margin-top: 40px;
-  }
-  .msger-chat{
-    height: 630px;
-  }
-}
-
-@media (max-height:860px){
-  .t-head{
-    margin-top: 30px;
-  }
-  .msger-chat{
-    height: 600px;
-  }
-}
-
-@media (max-height:820px){
+@media (max-height:870px){
   .t-head{
     margin-top: 25px;
+    margin-bottom: 20px;
   }
   .msger-chat{
-    height: 500px;
-    font-size: 0.8rem;
-    
-  }
-}
-
-@media (max-height:720px){
-  .t-head{
-    margin-top: 25px;
-  }
-  .msger-chat{
-    height: 450px;
-    font-size: 0.7rem;
-    
-  }
-}
-
-@media (max-height:670px){
-  .t-head{
-    margin-top: 20px;
-  }
-  .msger-chat{
-    height: 400px;
-    font-size: 0.6rem;
+    height: calc(100vh - 195px);
   }
   .msger{
-    font-size: 0.6rem;
-  }
-}
-
-@media (max-height:600px){
-  .t-head{
-    margin-top: 15px;
-  }
-
-  .msger-chat{
-    font-size: 0.6rem;
-  }
-  .msger{
-    margin-top: 15px;
-    font-size: 0.6rem;
+    margin: 0;
   }
 }
 
 @media (max-width:750px){
   .msger{
-    width: 100%;
-  }
-}
-
-@media (max-width:400px){
-  .msger{
-    font-size: 0.5rem;
+    width: 100vw;
     margin-left: 0;
+    font-size: 0.8rem;
   }
-  
 }
 
 .noselect {
