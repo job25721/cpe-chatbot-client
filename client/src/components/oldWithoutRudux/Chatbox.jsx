@@ -111,7 +111,7 @@ export default class Chatbox extends React.Component {
           <div class="msg ${side}-msg">
             <div class="msg-img" style="background-image: url(${img})"></div>
             <div class="msg-bubble">
-              <div class="msg-info">
+              <div class="msg-info noselect">
                 <div class="msg-info-name">${name}</div>
                 <div class="msg-info-time">${this.formatDate(new Date())}</div>
               </div>
@@ -210,7 +210,7 @@ export default class Chatbox extends React.Component {
                 ></div>
 
                 <div className="msg-bubble">
-                  <div className="msg-info">
+                  <div className="msg-info noselect">
                     <div className="msg-info-name">{this.state.bot_name}</div>
                     <div className="msg-info-time">{this.state.dateNow}</div>
                   </div>
