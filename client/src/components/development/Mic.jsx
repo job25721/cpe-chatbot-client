@@ -21,7 +21,12 @@ if (recognition != null){
 
 
 // -------------------------
-const Mic = (props) => {
+const Mic = ({
+  messageBoxInput,
+  changeMessageBox,
+  sendInputMessageToServer,
+  sessionId
+}) => {
 
   const [listening, setListening] = useState(false);
 
@@ -39,13 +44,13 @@ const Mic = (props) => {
     if (!listening) {
       recognition.start()
       recognition.onend = () => {
-        props.changeMessageBox(finalTranscript);
+        changeMessageBox(finalTranscript);
         recognition.start();
       }
     } else {
       recognition.stop()
       recognition.onend = () => {
-        props.sendInputMessageToServer(props.messageBoxInput, "SessionId");
+        sendInputMessageToServer(messageBoxInput, sessionId);
       }
     }
 
@@ -58,7 +63,7 @@ const Mic = (props) => {
         if (event.results[i].isFinal) finalTranscript += transcript + ' ';
         else interimTranscript += transcript;
       }
-      props.changeMessageBox(interimTranscript);
+      changeMessageBox(interimTranscript);
     }
 
     recognition.onerror = event => {
@@ -82,11 +87,13 @@ Mic.propTypes = {
   messageBoxInput: PropTypes.string.isRequired,
   changeMessageBox: PropTypes.func.isRequired,
   sendInputMessageToServer: PropTypes.func.isRequired,
+  sessionId: PropTypes.string.isRequired,
 }
 
 
 const mapStateToProps = state => ({
   messageBoxInput:  state.message.messageBoxInput,
+  sessionId: state.user.sessionId,
 });
 
 export default connect(mapStateToProps, { changeMessageBox, sendInputMessageToServer })(Mic);

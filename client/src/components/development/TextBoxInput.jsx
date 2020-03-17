@@ -46,6 +46,7 @@ TextBoxInput.propTypes = {
 
 const mapStateToProps = state => ({
   messageBoxInput: state.message.messageBoxInput,
+  sessionId: state.user.sessionId,
 })
 
 export default connect(mapStateToProps, { sendInputMessageToServer, changeMessageBox })(TextBoxInput)

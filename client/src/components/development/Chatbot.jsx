@@ -7,19 +7,16 @@ import LoadingChat from './LoadingChat';
 // redux things
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { setResponseMessage } from '../../redux/actions/message';
 
 
 const Chatbot = ({
-    setResponseMessage,
     messageCollections,
-    isLoadingResponse
+    isLoadingResponse,
+    user_name,
+    user_img
 }) => {
 
-    const user_img = "https://image.flaticon.com/icons/svg/145/145867.svg";
     const bot_img = "https://image.flaticon.com/icons/svg/327/327779.svg";
-
-    const user_name = "Guest";
     const bot_name = "CPE-bot";
 
     const formatDate = date => {
@@ -27,11 +24,6 @@ const Chatbot = ({
         const m = "0" + date.getMinutes();
         return `${h.slice(-2)}:${m.slice(-2)}`;
     }
-
-    // run once when website start
-    useEffect(() => {
-        setResponseMessage(`สวัสดี ${user_name} ฉันคือ Bot ของ CPE-Chatbot มีอะไรให้ช่วย😄`);
-    }, [setResponseMessage]);
 
     // scroll chat to botton
     let messagesEnd = null;
@@ -68,7 +60,7 @@ const Chatbot = ({
                     </div>
                 </div>
 
-                <TextBoxInput sessionId={user_name} />
+                <TextBoxInput />
             </section>
         </div>
     )
@@ -76,12 +68,16 @@ const Chatbot = ({
 
 Chatbot.propTypes = {
     messageCollections: PropTypes.array.isRequired,
-    setResponseMessage: PropTypes.func.isRequired,
+    isLoadingResponse: PropTypes.bool.isRequired,
+    user_name: PropTypes.string.isRequired,
+    user_img: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = state => ({
     messageCollections: state.message.messageCollections,
     isLoadingResponse: state.message.isLoadingResponse,
+    user_name: state.user.user_name,
+    user_img: state.user.user_img,
 });
 
-export default connect(mapStateToProps, { setResponseMessage })(Chatbot)
+export default connect(mapStateToProps, null)(Chatbot)

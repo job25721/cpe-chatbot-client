@@ -19,7 +19,6 @@ export default function(state=initialState, action) {
             }
         case SEND_MESSAGE_TO_SERVER:
             return {
-                ...state,
                 isLoadingResponse: true,
                 messageCollections: [...state.messageCollections, action.payload.textCollection],
                 messageBoxInput: "",
