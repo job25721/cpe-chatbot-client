@@ -28,6 +28,7 @@ export default function(state=initialState, action) {
         case SET_RESPONSE_MESSAGE:
             return {
                 ...state,
+                isLoadingResponse: false,
                 messageCollections: [...state.messageCollections, action.payload.textCollection],
             }
         // Handle Error...

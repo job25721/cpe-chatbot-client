@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import "../../css/chat.css";
 import TextBoxInput from './TextBoxInput';
 import MessageBlock from './MessageBlock';
+import LoadingChat from './LoadingChat';
 
 // redux things
 import PropTypes from 'prop-types';
@@ -11,7 +12,8 @@ import { setResponseMessage } from '../../redux/actions/message';
 
 const Chatbot = ({
     setResponseMessage,
-    messageCollections
+    messageCollections,
+    isLoadingResponse
 }) => {
 
     const user_img = "https://image.flaticon.com/icons/svg/145/145867.svg";
@@ -57,6 +59,10 @@ const Chatbot = ({
                             dateNow={formatDate(new Date())}
                         />
                     ))}
+
+                    {isLoadingResponse ? <LoadingChat/> : null}
+                    
+
                     <div style={{ float: "left", clear: "both" }}
                         ref={(el) => { messagesEnd = el; }}>
                     </div>
@@ -75,6 +81,7 @@ Chatbot.propTypes = {
 
 const mapStateToProps = state => ({
     messageCollections: state.message.messageCollections,
+    isLoadingResponse: state.message.isLoadingResponse,
 });
 
 export default connect(mapStateToProps, { setResponseMessage })(Chatbot)
