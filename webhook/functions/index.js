@@ -6,6 +6,7 @@ const getSongFullfilment = require('./fullfilment/getSongFullfilment');
 
 const getTeacherFullfilment = require('./fullfilment/getTeacherFullfilment');
 
+const getSubjectFullfilment = require('./fullfilment/getSubjectFullfilment');
 
 exports.dialogflowFirebaseFulfillment = functions.region('asia-east2')
     .https.onRequest((request, response) => {
@@ -21,9 +22,14 @@ exports.dialogflowFirebaseFulfillment = functions.region('asia-east2')
             await getTeacherFullfilment(agent, queryResult)
         }
 
+        async function getSubjectRequest(agent){
+            await getSubjectFullfilment(agent, queryResult)
+        }
+
         let intentMap = new Map();
         intentMap.set('CpeBot.songRequest', getSongRequest);
         intentMap.set('computerEng.teacherRequest',getTeacherRequest);
+        intentMap.set('computerEng.subject',getSubjectRequest);
 
         agent.handleRequest(intentMap);
     });
