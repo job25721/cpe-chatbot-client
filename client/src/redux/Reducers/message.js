@@ -2,7 +2,6 @@ import {
     CHANGE_MESSAGE_BOX,
     SEND_MESSAGE_TO_SERVER,
     SET_RESPONSE_MESSAGE,
-    SEND_MESSAGE_ERROR,
 } from '../actions/types';
 
 const initialState = {
@@ -31,8 +30,6 @@ export default function(state=initialState, action) {
                 isLoadingResponse: false,
                 messageCollections: [...state.messageCollections, action.payload.textCollection],
             }
-        // Handle Error...
-        case SEND_MESSAGE_ERROR:
         default:
             return state
     }

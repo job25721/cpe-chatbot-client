@@ -2,7 +2,6 @@ import {
     CHANGE_MESSAGE_BOX,
     SEND_MESSAGE_TO_SERVER,
     SET_RESPONSE_MESSAGE,
-    SEND_MESSAGE_ERROR,
 } from './types';
 
 import api from '../../api';
@@ -46,11 +45,7 @@ export const sendInputMessageToServer = (msg, sessionId) => async dispatch => {
 
     } catch (error) {
 
-        // Do Something with error...
-        dispatch({
-            type: SEND_MESSAGE_ERROR,
-        });
-
+        dispatch(setResponseMessage("เกิดข้อผิดพลาดระหว่างการส่งข้อความของคุณไปยัง server"));
 
     }
 }
