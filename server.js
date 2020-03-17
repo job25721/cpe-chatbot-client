@@ -24,8 +24,10 @@ app.post('/api/dialogflowGateway', async (req, res) => {
         const sessionId = req.body.sessionId;
 
         const responseChat = await processMessage(message,sessionId);
-        console.log(JSON.stringify(responseChat));
-        res.json(responseChat);
+        console.log(`responseText: ${responseChat.fulfillmentText}`);
+        res.json({
+            fulfillmentText: responseChat.fulfillmentText
+        });
 
     } catch (error) {
 

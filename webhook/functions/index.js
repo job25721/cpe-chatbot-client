@@ -3,9 +3,7 @@ const functions = require('firebase-functions');
 const { WebhookClient } = require('dialogflow-fulfillment');
 
 const getSongFullfilment = require('./fullfilment/getSongFullfilment');
-
 const getTeacherFullfilment = require('./fullfilment/getTeacherFullfilment');
-
 const getSubjectFullfilment = require('./fullfilment/getSubjectFullfilment');
 
 exports.dialogflowFirebaseFulfillment = functions.region('asia-east2')
