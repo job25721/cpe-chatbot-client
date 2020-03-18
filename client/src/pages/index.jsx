@@ -25,7 +25,6 @@ export default () =>  {
           <p className="center index-text">
             - Department of Computer Engineering, Chiang Mai University -
           </p>
-
         </div>
       </React-fragment>
     );
