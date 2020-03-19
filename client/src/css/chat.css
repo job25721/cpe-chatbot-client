@@ -225,6 +225,7 @@ body {
   }
   .msger{
     margin: 0;
+    height: calc(100vh - 128px);
   }
 }
 

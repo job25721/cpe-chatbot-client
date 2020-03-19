@@ -2,8 +2,7 @@ import React from "react";
 import "../css/home.css";
 import {Helmet} from "react-helmet";
 
-export default class App extends React.Component {
-  render() {
+export default () =>  {
     return (
       <React-fragment>
         <Helmet>
@@ -26,9 +25,7 @@ export default class App extends React.Component {
           <p className="center index-text">
             - Department of Computer Engineering, Chiang Mai University -
           </p>
-
         </div>
       </React-fragment>
     );
-  }
 }
