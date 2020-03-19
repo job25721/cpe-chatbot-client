@@ -1,11 +1,13 @@
 import React from 'react';
 
 import Mic from './Mic';
+import MuteButton from './MuteButton';
 
 // redux things
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { changeMessageBox, sendInputMessageToServer } from '../../redux/actions/message';
+
 
 const TextBoxInput = (props) => {
 
@@ -20,6 +22,7 @@ const TextBoxInput = (props) => {
       onSubmit={submitMessage}
     >
 
+      <MuteButton />
       <Mic />
 
       <input

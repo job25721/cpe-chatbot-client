@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from "react";
+import React from "react";
 
 import "../../css/record-button.css";
 import PropTypes from "prop-types";
@@ -7,13 +7,14 @@ import PropTypes from "prop-types";
 // redux things
 import { connect } from 'react-redux';
 import { changeMessageBox, sendInputMessageToServer } from '../../redux/actions/message';
+import { setEnableMicInput } from '../../redux/actions/user';
 
 // ------------------------
 
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 const recognition = SpeechRecognition ? new SpeechRecognition() : null;
 
-if (recognition != null){
+if (recognition != null) {
   recognition.continous = true;
   recognition.interimResults = true;
   recognition.lang = 'th';
@@ -25,23 +26,23 @@ const Mic = ({
   messageBoxInput,
   changeMessageBox,
   sendInputMessageToServer,
-  sessionId
+  sessionId,
+  enableMicInput,
+  setEnableMicInput,
 }) => {
 
-  const [listening, setListening] = useState(false);
-
   const toggleListen = () => {
-    if (!recognition){
+    if (!recognition) {
       console.error("Browser doesn't support speech recognition please use chrome");
       return;
     }
-    setListening(!listening);
+    setEnableMicInput(!enableMicInput);
     handleListen();
   }
 
   const handleListen = () => {
 
-    if (!listening) {
+    if (!enableMicInput) {
       recognition.start()
       recognition.onend = () => {
         changeMessageBox(finalTranscript);
@@ -73,27 +74,28 @@ const Mic = ({
   }
 
   return (
-    <Fragment>
-      <div className="p-0">
-        <div id="recButton" className={`rec-button mr-1 ${listening ? "Rec" : "notRec"}`} onClick={toggleListen}>
-          <i className="fas fa-microphone fa-3x mic-pic"></i>
-        </div>
+    <div className="p-0">
+      <div id="recButton" className={`rec-button mr-1 ${enableMicInput ? "Rec" : ""}`} onClick={toggleListen}>
+        <i className="fas fa-microphone fa-3x mic-pic"></i>
       </div>
-    </Fragment>
+    </div>
   )
 }
 
 Mic.propTypes = {
   messageBoxInput: PropTypes.string.isRequired,
   changeMessageBox: PropTypes.func.isRequired,
+  enableMicInput: PropTypes.bool.isRequired,
   sendInputMessageToServer: PropTypes.func.isRequired,
   sessionId: PropTypes.string.isRequired,
+  setEnableMicInput: PropTypes.func.isRequired,
 }
 
 
 const mapStateToProps = state => ({
-  messageBoxInput:  state.message.messageBoxInput,
+  messageBoxInput: state.message.messageBoxInput,
   sessionId: state.user.sessionId,
+  enableMicInput: state.user.enableMicInput,
 });
 
-export default connect(mapStateToProps, { changeMessageBox, sendInputMessageToServer })(Mic);
+export default connect(mapStateToProps, { changeMessageBox, sendInputMessageToServer, setEnableMicInput })(Mic);

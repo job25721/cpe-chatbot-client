@@ -7,6 +7,7 @@ import {
 import api from '../../api';
 import $ from "jquery";
 import { v1 } from 'uuid';
+import store from '../store';
 
 export const changeMessageBox = (msg) => dispatch => {
     dispatch({
@@ -34,8 +35,6 @@ export const sendInputMessageToServer = (msg, sessionId) => async dispatch => {
 
     try {
 
-        console.log("Sending message");
-
         const result = await api.post('api/dialogflowGateway', {
             message: msg,
             sessionId: sessionId,
@@ -55,12 +54,14 @@ export const setResponseMessage = (newResponseMsg) => dispatch => {
     let response = newResponseMsg;
 
     if (newResponseMsg === "")
-        response = "อะไร ?";
+        response = "ฉันไม่เข้าใจ";
 
     
     // bot say things
-    const responseText = $(`<p>${response}</p>`).text();
-    window.responsiveVoice.speak(responseText, "Thai Female");
+    if(store.getState().user.enableBotSpeech){
+        const responseText = $(`<p>${response}</p>`).text();
+        window.responsiveVoice.speak(responseText, "Thai Female");
+    }
 
     dispatch({
         type: SET_RESPONSE_MESSAGE,
