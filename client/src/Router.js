@@ -2,7 +2,6 @@ import React, {useEffect} from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 import Pages from './pages'
-//import Components from './Components'
 
 // Redux
 import { Provider } from 'react-redux';
