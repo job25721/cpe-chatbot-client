@@ -3,7 +3,8 @@ import {
     SET_USER_NAME,
     SET_ENABLE_BOT_SPEECH,
     SET_ENABLE_MIC_INPUT,
-    SET_RESPONSE_MESSAGE
+    SET_RESPONSE_MESSAGE,
+    SET_BOT_GENDER_PIC
 } from '../actions/types';
 
 const initialState = {
@@ -12,6 +13,7 @@ const initialState = {
     sessionId: "",
     enableBotSpeech: true,
     enableMicInput: false,
+    botSpeech_gender : "Male"
 }
 
 export default function(state=initialState, action) {
@@ -41,6 +43,11 @@ export default function(state=initialState, action) {
             return {
                 ...state,
                 enableMicInput: false,
+            }
+        case SET_BOT_GENDER_PIC:
+            return{
+                ...state,
+                botSpeech_gender : action.payload
             }
         default:
             return state

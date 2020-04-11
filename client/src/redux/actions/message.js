@@ -60,7 +60,7 @@ export const setResponseMessage = (newResponseMsg) => dispatch => {
     // bot say things
     if(store.getState().user.enableBotSpeech){
         const responseText = $(`<p>${response}</p>`).text();
-        window.responsiveVoice.speak(responseText, "Thai Female");
+        window.responsiveVoice.speak(responseText, `Thai ${store.getState().user.botSpeech_gender}`);
     }
 
     dispatch({

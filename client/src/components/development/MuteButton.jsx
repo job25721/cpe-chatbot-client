@@ -1,10 +1,10 @@
 import React from "react";
 
-import "../../css/mute-button.css";
 import PropTypes from "prop-types";
 
 import { connect } from 'react-redux';
 import { setEnableBotSpeech } from '../../redux/actions/user';
+
 
 
 const MuteButton = ({
@@ -13,8 +13,8 @@ const MuteButton = ({
 }) => {
     return (
         <div className="p-0">
-            <div id="muteButton" className={`volume-button mr-1`} onClick={() => setEnableBotSpeech(!enableBotSpeech)}>
-                <i className={`fas ${enableBotSpeech ? "fa-volume-up" : "fa-volume-mute"} fa-3x volume-pic`}></i>
+            <div id="muteButton" style={enableBotSpeech ? {backgroundColor : "#66BB6A" }: {backgroundColor:"#EF5350"}} className={`msgr-button mr-1`} onClick={() => setEnableBotSpeech(!enableBotSpeech)}>
+                <i className={`fas ${enableBotSpeech ? "fa-volume-up" : "fa-volume-mute"} msgr-button-pic`}></i>
             </div>
         </div>
     )

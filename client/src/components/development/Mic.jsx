@@ -1,6 +1,7 @@
 import React from "react";
 
 import "../../css/record-button.css";
+
 import PropTypes from "prop-types";
 // import SpeechRecognition from "react-speech-recognition";
 
@@ -75,8 +76,8 @@ const Mic = ({
 
   return (
     <div className="p-0">
-      <div id="recButton" className={`rec-button mr-1 ${enableMicInput ? "Rec" : ""}`} onClick={toggleListen}>
-        <i className="fas fa-microphone fa-3x mic-pic"></i>
+      <div id="recButton" className={`msgr-button mr-1 ${enableMicInput ? "Rec" : ""}`} style={{backgroundColor:"#ff5959"}} onClick={toggleListen}>
+        <i className="fas fa-microphone msgr-button-pic"></i>
       </div>
     </div>
   )

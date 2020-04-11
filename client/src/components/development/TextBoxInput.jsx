@@ -2,7 +2,7 @@ import React from 'react';
 
 import Mic from './Mic';
 import MuteButton from './MuteButton';
-
+import ChangeVoice from './ChangeVoiceButton'
 // redux things
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -21,17 +21,20 @@ const TextBoxInput = (props) => {
       className="msger-inputarea"
       onSubmit={submitMessage}
     >
-
+      <ChangeVoice />
       <MuteButton />
       <Mic />
-
-      <input
+      <div className="msger-input ml-2">
+        <input
         type="text"
-        className="msger-input"
+        className="form-control"
         placeholder="Enter your message..."
         value={props.messageBoxInput}
         onChange={e => props.changeMessageBox(e.target.value)}
-      />
+        style={{height:"50px"}}
+        />
+      </div>
+    
       <button type="submit" className="msger-send-btn">
         Send
       </button>
