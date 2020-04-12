@@ -11,9 +11,9 @@ const initialState = {
     user_name: "",
     user_img: "",
     sessionId: "",
-    enableBotSpeech: true,
+    enableBotSpeech: false,
     enableMicInput: false,
-    botSpeech_gender : "Male"
+    botSpeech_gender : "Female"
 }
 
 export default function(state=initialState, action) {

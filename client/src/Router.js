@@ -15,14 +15,8 @@ export default () => {
     useEffect(()=>{
         store.dispatch(setUserSessionId());
         store.dispatch(setUserName("guest", "https://image.flaticon.com/icons/svg/145/145867.svg"));
-        store.dispatch(setResponseMessage(`สวัสดี ${store.getState().user.user_name} ฉันคือ Bot ของ CPE-Chatbot มีอะไรให้ช่วย😄 <br>หากมีคำถามที่ฉันตอบไม่ได้พิมพ์ "ฉันต้องการเพิ่มคำถาม"`));
+        store.dispatch(setResponseMessage(`สวัสดี ${store.getState().user.user_name} ฉันคือ Bot ของ CPE-Chatbot มีอะไรให้ช่วย😄 <br>หากมีคำถามที่ฉันตอบไม่ได้ ให้พิมพ์ "ฉันต้องการเพิ่มคำถาม"`));
     }, []);
-
-    useEffect(()=>{
-        store.subscribe(()=>{
-            console.log(store.getState().user);
-        })
-    })
 
     return (
         <Provider store={store}>

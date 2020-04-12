@@ -7,7 +7,7 @@
 }
 
 body{
-  background-image: url("https://scontent.fbkk12-2.fna.fbcdn.net/v/t1.0-9/68471019_366237327385827_6744858826807181312_o.jpg?_nc_cat=105&_nc_sid=dd9801&_nc_eui2=AeF6D8Ne9iuudGQSptwJrTj4Dbr-HUTH51INuv4dRMfnUsCU3MVzsDEh20UHZW1xzr6hQbeWldWjNcqzCnWBIfXx&_nc_ohc=nrEx8BgrrE0AX9_nY1s&_nc_ht=scontent.fbkk12-2.fna&oh=567f6fa29d44453a80fa4c783526145d&oe=5EB6E53A");
+  background-image: url(https://images.unsplash.com/photo-1492714673295-07efb43ddaf8?ixlib=rb-1.2.1&auto=format&fit=crop&w=2100&q=80);
   background-position: center;
 }
 
@@ -60,7 +60,8 @@ body{
 }
 
 .text-cb {
-  color: #0f4c81;
+  /* color: #0f4c81; */
+  color: rgb(0, 0, 0);
 }
 
 .msger {
@@ -206,13 +207,14 @@ body{
 }
 
 .msger-chat {
+  background-color: white;
   /* background-color: #0f4c81; */
-  background-color: black;
-  background-image: url("https://scontent.fbkk9-2.fna.fbcdn.net/v/t1.0-9/32308891_167918627217699_8325900584125202432_o.jpg?_nc_cat=109&_nc_sid=85a577&_nc_eui2=AeHTKshkrLREjfxeCf4BMse3GfidbwwnfRcZ-J1vDCd9F4j-MU8h2EyWvZo0zz0y_3nx7yQ1e2NyLhXrv_7bvCMx&_nc_ohc=rvZjmXgEbRUAX8fgG6x&_nc_ht=scontent.fbkk9-2.fna&oh=9fa478843efdb3fcead113693823d28e&oe=5EB6C446");
+  background-image: url(/img/cpecmu-logo.png);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  opacity: 85%;
+  background-size: 250px;
+  opacity: 0.95;
 }
 .msg-text {
   word-wrap: break-word;
