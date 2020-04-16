@@ -23,11 +23,12 @@ export const setUserName = (user_name, user_img) => dispatch => {
 
 export const setEnableBotSpeech = (enable) => dispatch => {
 
-    if(!enable) window.responsiveVoice.cancel();
+    if(!enable) window.responsiveVoice.pause();
+    else window.responsiveVoice.resume();
 
     dispatch({
         type: SET_ENABLE_BOT_SPEECH,
-        payload: enable
+        payload: enable,
     });
 }
 
