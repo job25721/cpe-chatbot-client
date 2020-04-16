@@ -22,8 +22,7 @@ export default () => {
         <Provider store={store}>
             <BrowserRouter>
                 <Switch>
-                    <Route exact path='/' component={Pages.index} />
-                    <Route exact path='/app' component={Pages.Chat} />
+                    <Route exact path='/' component={Pages.Chat} />
                 </Switch>
             </BrowserRouter>
         </Provider>
