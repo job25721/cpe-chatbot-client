@@ -40,7 +40,7 @@ app.post('/api/dialogflowGateway', async (req, res) => {
 
 });
 
-app.post("/webhookGateway", async (req, res) => {
+app.post("/webhookGateway", async (request, response) => {
     const agent = new WebhookClient({ request, response });
 
     const queryResult = request.body.queryResult;
