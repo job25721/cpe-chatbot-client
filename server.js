@@ -5,8 +5,18 @@ const cors = require('cors');
 const httpStatus = require('http-status');
 const processMessage = require('./process-message');
 const { WebhookClient } = require('dialogflow-fulfillment');
+const admin = require('firebase-admin');
+
+const serviceAccount = require("./cpe-chatbot-d4ebc-firebase-adminsdk-vz8fi-130fb09f43.json");
+
+admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
+    databaseURL: "https://cpe-chatbot-d4ebc.firebaseio.com"
+});
 
 const app = express();
+
+const db = admin.firestore();
 
 
 // Init Middleware
@@ -79,11 +89,11 @@ app.post("/webhookGateway", async (request, response) => {
     async function addQuestion(agent) {
         try {
             const question = queryResult.parameters.question;
-    
+
             await db.collection("Question").add({
                 question
             });
-    
+
         } catch (error) {
             console.log(error)
             agent.add('เกิดข้อผิดพลาดระหว่างบันทึกข้อมูลลง internet');
